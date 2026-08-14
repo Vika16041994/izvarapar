@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ИзвараПар — банный комплекс в объятиях природы</title>
+<meta name="description" content="ИзвараПар — русская баня на дровах, горячая купель фурако, парение с мастером и уединение среди леса. Ленинградская область.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          charcoal: { 900: '#0e0c0b', 800: '#161311', 700: '#211c19', 600: '#2b2420' },
+          wood:     { 600: '#4a3326', 500: '#5c4030', 400: '#7a5940' },
+          stone:    { 300: '#c9c2b8', 200: '#e4dfd6', 100: '#f4f1ea' },
+          gold:     { 500: '#b4894f', 400: '#c9a06a', 300: '#dcbb8c' },
+          olive:    { DEFAULT: '#6b6a45', 600: '#565535' },
+        },
+        fontFamily: {
+          display: ['"PT Serif"', 'serif'],
+          sans: ['"PT Sans"', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  .section-scroll { scroll-margin-top: 88px; }
+  .gallery-item { transition: opacity .5s ease, transform .5s ease; }
+  .gallery-item.is-hidden { display: none; }
+  .gallery-item.is-appearing { opacity: 0; transform: scale(.96); }
+  .price-row:last-child { border-bottom: none; }
+  @keyframes ember-flicker {
+    0%, 100% { opacity: .5; transform: scale(1) translateY(0); }
+    30% { opacity: .85; transform: scale(1.08) translateY(-1px); }
+    55% { opacity: .6; transform: scale(.94) translateY(.5px); }
+    80% { opacity: .9; transform: scale(1.05) translateY(-.5px); }
+  }
+  .ember {
+    display: inline-block;
+    color: #e2793f;
+    filter: drop-shadow(0 0 5px rgba(226,121,63,.55));
+    animation: ember-flicker 3.4s ease-in-out infinite;
+  }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #0e0c0b; }
+  ::-webkit-scrollbar-thumb { background: #4a3326; border-radius: 8px; }
+</style>
+</head>
+
+<body class="bg-charcoal-900 text-stone-200 font-sans antialiased">
+
+<!-- ===================== HEADER ===================== -->
+<header class="fixed top-0 inset-x-0 z-50 bg-charcoal-900/85 backdrop-blur-md border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 h-20 flex items-center justify-between">
+    <a href="#hero" class="font-display text-2xl md:text-3xl tracking-wide text-gold-400">ИзвараПар</a>
+
+    <nav class="hidden md:flex items-center gap-9 text-sm tracking-wide text-stone-300">
+      <a href="#about" class="hover:text-gold-400 transition">О комплексе</a>
+      <a href="#services" class="hover:text-gold-400 transition">Услуги и цены</a>
+      <a href="#gallery" class="hover:text-gold-400 transition">Атмосфера</a>
+      <a href="#contacts" class="hover:text-gold-400 transition">Контакты</a>
+      <a href="#location" class="hover:text-gold-400 transition">Как добраться</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="tel:+79320061465" class="hidden sm:inline-flex items-center gap-2 border border-gold-500/60 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900 transition rounded-full px-5 py-2.5 text-sm font-medium">
+        <i class="fa-solid fa-phone text-xs"></i> Позвонить
+      </a>
+      <button id="menu-toggle" aria-label="Открыть меню" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full border border-white/10 text-stone-100">
+        <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-charcoal-800 border-t border-white/5 px-6 py-6 flex flex-col gap-5 text-stone-200">
+    <a href="#about" class="mobile-link hover:text-gold-400 transition">О комплексе</a>
+    <a href="#services" class="mobile-link hover:text-gold-400 transition">Услуги и цены</a>
+    <a href="#gallery" class="mobile-link hover:text-gold-400 transition">Атмосфера</a>
+    <a href="#contacts" class="mobile-link hover:text-gold-400 transition">Контакты</a>
+    <a href="#location" class="mobile-link hover:text-gold-400 transition">Как добраться</a>
+    <a href="tel:+79320061465" class="mobile-link inline-flex items-center gap-2 text-gold-400 font-medium">
+      <i class="fa-solid fa-phone text-xs"></i> +7 932 006-14-65
+    </a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero" class="relative h-[100svh] min-h-[560px] flex items-center overflow-hidden">
+  <video
+    class="absolute inset-0 w-full h-full object-cover"
+    autoplay muted loop playsinline preload="metadata"
+    poster="баня/IMG_20251112_115725_269.jpg">
+    <source src="баня/VID_20251111_211359_237.mp4" type="video/mp4">
+  </video>
+  <div class="absolute inset-0 bg-gradient-to-b from-charcoal-900/70 via-charcoal-900/45 to-charcoal-900/95"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 md:px-8 w-full">
+    <div class="max-w-2xl">
+      <p class="uppercase tracking-[0.3em] text-gold-400 text-xs md:text-sm mb-5">Банный комплекс · Ленинградская область</p>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.1] text-stone-100 mb-6">
+        Отдых, в котором<br> тело и душа<br> находят <span class="text-gold-400 italic">тишину</span>
+      </h1>
+      <p class="text-stone-300 text-base md:text-lg leading-relaxed mb-9 max-w-lg">
+        Дровяная баня, горячий пар, запах трав и звенящая тишина леса. Здесь городская суета остаётся за воротами, а вы — наедине с собой, близкими и открытым небом.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#services" class="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-charcoal-900 font-semibold rounded-full px-8 py-4 transition">
+          Услуги и цены
+        </a>
+        <a href="#contacts" class="inline-flex items-center gap-2 border border-white/25 hover:border-gold-400 hover:text-gold-400 text-stone-100 rounded-full px-8 py-4 transition">
+          Записаться
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-stone-300/70 animate-bounce">
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ===================== О КОМПЛЕКСЕ ===================== -->
+<section id="about" class="section-scroll py-24 md:py-32 bg-charcoal-800">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-14 items-center">
+    <div>
+      <p class="uppercase tracking-[0.3em] text-gold-400 text-xs mb-4">О комплексе</p>
+      <h2 class="font-display text-3xl md:text-4xl text-stone-100 mb-6 leading-tight">
+        Убежище от города, спрятанное среди сосен
+      </h2>
+      <p class="text-stone-300 leading-relaxed mb-5">
+        ИзвараПар — это не просто баня. Это пространство, где потрескивание дров, аромат дубового веника и пар, поднимающийся над горячим срубом, возвращают вас к самому себе. Мы строили комплекс так, чтобы в нём хотелось задержаться — на весь вечер, а лучше на всю ночь.
+      </p>
+      <p class="text-stone-300 leading-relaxed mb-5">
+        Просторная парная на дровах, купель фурако под открытым небом, уютные домики для отдыха между заходами и мангальная зона — всё продумано для компании друзей, семейного отдыха или тихого уединения вдвоём.
+      </p>
+      <p class="text-stone-300 leading-relaxed">
+        Здесь пахнет травами, а не хлоркой. Здесь тихо — только огонь, вода и лес. Мы верим, что настоящий отдых начинается там, где заканчивается спешка.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 h-[420px] md:h-[480px]">
+      <div class="row-span-2 rounded-2xl overflow-hidden">
+        <img src="img/интерьер/IMG_20251002_201823_508.JPG" alt="Уютный интерьер бани" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+      </div>
+      <div class="rounded-2xl overflow-hidden">
+        <img src="img/домики с наружи/20231202_190227.jpg" alt="Домик комплекса ИзвараПар снаружи" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+      </div>
+      <div class="rounded-2xl overflow-hidden">
+        <img src="img/интерьер/IMG_20251002_201844_785.JPG" alt="Внутреннее убранство комплекса" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 mt-14">
+    <div class="rounded-2xl overflow-hidden h-64 md:h-80">
+      <img src="img/природа/20231203_142821.jpg" alt="Загородная природа вокруг комплекса ИзвараПар" loading="lazy" class="w-full h-full object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== УСЛУГИ И ЦЕНЫ ===================== -->
+<section id="services" class="section-scroll py-24 md:py-32 bg-charcoal-900">
+  <div class="max-w-3xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-14">
+      <p class="uppercase tracking-[0.3em] text-gold-400 text-xs mb-4">Прайс-лист</p>
+      <h2 class="font-display text-3xl md:text-4xl text-stone-100">Услуги и цены</h2>
+    </div>
+
+    <div class="border border-gold-500/20 rounded-2xl px-6 md:px-10 py-4 bg-charcoal-800/60">
+      <div class="price-row flex justify-between items-baseline gap-4 border-b border-white/10 py-5">
+        <span class="text-stone-100 text-base md:text-lg">Аренда русской бани на дровах</span>
+        <span class="flex-1 border-b border-dotted border-white/20 mb-2 hidden sm:block"></span>
+        <span class="font-display text-gold-400 text-lg md:text-xl whitespace-nowrap">от 2 500 ₽/час</span>
+      </div>
+      <div class="price-row flex justify-between items-baseline gap-4 border-b border-white/10 py-5">
+        <span class="text-stone-100 text-base md:text-lg">Горячая купель фурако, 2 часа</span>
+        <span class="flex-1 border-b border-dotted border-white/20 mb-2 hidden sm:block"></span>
+        <span class="font-display text-gold-400 text-lg md:text-xl whitespace-nowrap">5 000 ₽</span>
+      </div>
+      <div class="price-row flex justify-between items-baseline gap-4 border-b border-white/10 py-5">
+        <span class="text-stone-100 text-base md:text-lg">Услуги пар-мастера, индивидуальное парение (1 час)</span>
+        <span class="flex-1 border-b border-dotted border-white/20 mb-2 hidden sm:block"></span>
+        <span class="font-display text-gold-400 text-lg md:text-xl whitespace-nowrap">3 000 ₽</span>
+      </div>
+      <div class="price-row flex justify-between items-baseline gap-4 border-b border-white/10 py-5">
+        <span class="text-stone-100 text-base md:text-lg">Веник дубовый / берёзовый</span>
+        <span class="flex-1 border-b border-dotted border-white/20 mb-2 hidden sm:block"></span>
+        <span class="font-display text-gold-400 text-lg md:text-xl whitespace-nowrap">500 ₽</span>
+      </div>
+      <div class="price-row flex justify-between items-baseline gap-4 border-b border-white/10 py-5">
+        <span class="text-stone-100 text-base md:text-lg">Запарка для бани</span>
+        <span class="flex-1 border-b border-dotted border-white/20 mb-2 hidden sm:block"></span>
+        <span class="font-display text-gold-400 text-lg md:text-xl whitespace-nowrap">300 ₽</span>
+      </div>
+      <div class="price-row flex justify-between items-baseline gap-4 border-b border-white/10 py-5">
+        <span class="text-stone-100 text-base md:text-lg">Арома-веточки</span>
+        <span class="flex-1 border-b border-dotted border-white/20 mb-2 hidden sm:block"></span>
+        <span class="font-display text-gold-400 text-lg md:text-xl whitespace-nowrap">300 ₽</span>
+      </div>
+      <div class="price-row flex justify-between items-baseline gap-4 border-b border-white/10 py-5">
+        <span class="text-stone-100 text-base md:text-lg">Веер для парения</span>
+        <span class="flex-1 border-b border-dotted border-white/20 mb-2 hidden sm:block"></span>
+        <span class="font-display text-gold-400 text-lg md:text-xl whitespace-nowrap">300 ₽</span>
+      </div>
+      <div class="price-row flex justify-between items-baseline gap-4 py-5">
+        <span class="text-stone-100 text-base md:text-lg">Продление бани</span>
+        <span class="flex-1 border-b border-dotted border-white/20 mb-2 hidden sm:block"></span>
+        <span class="font-display text-gold-400 text-lg md:text-xl whitespace-nowrap">1 000 ₽</span>
+      </div>
+    </div>
+
+    <p class="text-center text-stone-400 text-sm mt-8">Точную стоимость и наличие свободного времени уточняйте по телефону — мы подберём формат отдыха под вашу компанию.</p>
+  </div>
+</section>
+
+<!-- ===================== ГАЛЕРЕЯ «АТМОСФЕРА» ===================== -->
+<section id="gallery" class="section-scroll py-24 md:py-32 bg-charcoal-800">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="uppercase tracking-[0.3em] text-gold-400 text-xs mb-4">Галерея</p>
+      <h2 class="font-display text-3xl md:text-4xl text-stone-100">Атмосфера ИзвараПар</h2>
+    </div>
+
+    <div id="gallery-tabs" class="flex flex-wrap justify-center gap-3 mb-10">
+      <button data-category="all" class="tab-btn px-5 py-2.5 rounded-full text-sm border border-gold-500 bg-gold-500 text-charcoal-900 font-medium transition">Все</button>
+      <button data-category="domiki" class="tab-btn px-5 py-2.5 rounded-full text-sm border border-white/15 text-stone-300 hover:border-gold-400 hover:text-gold-400 transition">Экстерьер</button>
+      <button data-category="interior" class="tab-btn px-5 py-2.5 rounded-full text-sm border border-white/15 text-stone-300 hover:border-gold-400 hover:text-gold-400 transition">Интерьер</button>
+      <button data-category="priroda" class="tab-btn px-5 py-2.5 rounded-full text-sm border border-white/15 text-stone-300 hover:border-gold-400 hover:text-gold-400 transition">Природа</button>
+      <button data-category="relax" class="tab-btn px-5 py-2.5 rounded-full text-sm border border-white/15 text-stone-300 hover:border-gold-400 hover:text-gold-400 transition">Релакс</button>
+    </div>
+
+    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+
+    <div class="text-center mt-10">
+      <button id="show-more" class="inline-flex items-center gap-2 border border-gold-500/60 text-gold-400 hover:bg-gold-500 hover:text-charcoal-900 transition rounded-full px-8 py-3.5 text-sm font-medium">
+        Показать ещё
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== КОНТАКТЫ И СОЦСЕТИ ===================== -->
+<section id="contacts" class="section-scroll py-24 md:py-32 bg-gradient-to-b from-charcoal-900 to-wood-600">
+  <div class="max-w-5xl mx-auto px-5 md:px-8 text-center">
+    <p class="uppercase tracking-[0.3em] text-gold-400 text-xs mb-4">На связи</p>
+    <h2 class="font-display text-3xl md:text-4xl text-stone-100 mb-4">Будем рады видеть вас</h2>
+    <p class="text-stone-300 mb-14 max-w-xl mx-auto">Пишите или звоните — подберём удобное время и расскажем о свободных датах.</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <a href="tel:+79320061465" class="flex flex-col items-center gap-3 p-6 rounded-2xl border border-white/10 hover:border-gold-400 bg-charcoal-900/30 transition">
+        <i class="fa-solid fa-phone text-2xl text-gold-400"></i>
+        <span class="text-sm text-stone-200">+7 932 006-14-65</span>
+      </a>
+      <a href="https://vk.ru/club240853123" target="_blank" rel="noopener" class="flex flex-col items-center gap-3 p-6 rounded-2xl border border-white/10 hover:border-gold-400 bg-charcoal-900/30 transition">
+        <i class="fa-brands fa-vk text-2xl text-gold-400"></i>
+        <span class="text-sm text-stone-200">ВКонтакте</span>
+      </a>
+      <a href="https://www.instagram.com/_izvara_?igsh=eDhzdnc2ZGgxYXV1" target="_blank" rel="noopener" class="flex flex-col items-center gap-3 p-6 rounded-2xl border border-white/10 hover:border-gold-400 bg-charcoal-900/30 transition">
+        <i class="fa-brands fa-instagram text-2xl text-gold-400"></i>
+        <span class="text-sm text-stone-200">Instagram</span>
+      </a>
+      <a href="https://t.me/Aphrodite0707" target="_blank" rel="noopener" class="flex flex-col items-center gap-3 p-6 rounded-2xl border border-white/10 hover:border-gold-400 bg-charcoal-900/30 transition">
+        <i class="fa-brands fa-telegram text-2xl text-gold-400"></i>
+        <span class="text-sm text-stone-200">Telegram</span>
+      </a>
+      <a href="https://max.ru/join/WRcp7Vu9Mg7uveAYDYoBcj5ioL7KKzLmZv6gCIrL8WI" target="_blank" rel="noopener" class="flex flex-col items-center gap-3 p-6 rounded-2xl border-2 border-gold-400 bg-gold-500/10 ring-1 ring-gold-400/40 transition hover:bg-gold-500/20 col-span-2 md:col-span-1">
+        <img src="logo/Логотип_MAX.svg.webp" alt="Мессенджер MAX" loading="lazy" class="w-8 h-8 object-contain">
+        <span class="text-sm text-gold-300 font-medium">MAX</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== КАРТА И РАСПОЛОЖЕНИЕ ===================== -->
+<section id="location" class="section-scroll py-24 md:py-32 bg-charcoal-900">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <p class="uppercase tracking-[0.3em] text-gold-400 text-xs mb-4">Как добраться</p>
+      <h2 class="font-display text-3xl md:text-4xl text-stone-100 mb-6">Расположение</h2>
+      <p class="text-stone-300 leading-relaxed mb-2">
+        Ленинградская область, Ломоносовский район,<br>
+        Лопухинское сельское поселение,<br>
+        коттеджный посёлок Сочи
+      </p>
+      <p class="text-stone-400 text-sm mb-8">Уточним точный проезд и ориентиры при бронировании.</p>
+      <a href="https://yandex.ru/maps/org/izvarapar/201031551027/?ll=29.358453%2C59.684166&z=15" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-400 text-charcoal-900 font-semibold rounded-full px-8 py-4 transition">
+        <i class="fa-solid fa-location-arrow"></i> Открыть в Навигаторе
+      </a>
+    </div>
+    <div class="relative overflow-hidden rounded-2xl border border-white/10 h-80 md:h-96">
+      <a href="https://yandex.ru/maps/org/izvarapar/201031551027/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">ИзвараПар</a>
+      <a href="https://yandex.ru/maps/10174/saint-petersburg-and-leningrad-oblast/category/bathhouse/35325140238/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Баня в Санкт‑Петербурге и Ленинградской области</a>
+      <iframe src="https://yandex.ru/map-widget/v1/org/izvarapar/201031551027/?ll=29.358453%2C59.684166&z=15" class="w-full h-full" frameborder="1" allowfullscreen="true" loading="lazy" style="position:relative;border:0" title="Карта расположения ИзвараПар"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="py-10 border-t border-white/10 bg-charcoal-900">
+  <div class="text-center mb-4"><i class="fa-solid fa-fire ember text-sm"></i></div>
+  <div class="max-w-7xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-stone-400">
+    <span>© 2026 ИзвараПар. Все права защищены.</span>
+    <a href="#" class="hover:text-gold-400 transition">Политика конфиденциальности</a>
+  </div>
+</footer>
+
+<!-- ===================== ЛАЙТБОКС ГАЛЕРЕИ ===================== -->
+<div id="lightbox" class="hidden fixed inset-0 z-[100] bg-charcoal-900/95 backdrop-blur-sm items-center justify-center p-5">
+  <button id="lightbox-close" aria-label="Закрыть" class="absolute top-5 right-5 md:top-8 md:right-8 w-11 h-11 flex items-center justify-center rounded-full border border-white/20 text-stone-100 hover:border-gold-400 hover:text-gold-400 transition">
+    <i class="fa-solid fa-xmark text-xl"></i>
+  </button>
+  <button id="lightbox-prev" aria-label="Предыдущее фото" class="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full border border-white/20 text-stone-100 hover:border-gold-400 hover:text-gold-400 transition">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button id="lightbox-next" aria-label="Следующее фото" class="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full border border-white/20 text-stone-100 hover:border-gold-400 hover:text-gold-400 transition">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+  <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[85vh] rounded-xl object-contain shadow-2xl">
+</div>
+
+<script>
+  // --- Мобильное меню ---
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuIcon.classList.toggle('fa-bars', isOpen);
+    menuIcon.classList.toggle('fa-xmark', !isOpen);
+  });
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      menuIcon.classList.add('fa-bars');
+      menuIcon.classList.remove('fa-xmark');
+    });
+  });
+
+  // --- Данные галереи ---
+  const galleryData = [
+    // Домики
+    { src: 'img/домики с наружи/20231202_190227.jpg', category: 'domiki', alt: 'Домик комплекса ИзвараПар снаружи' },
+    { src: 'img/домики с наружи/20231203_020235.jpg', category: 'domiki', alt: 'Фасад домика вечером' },
+    { src: 'img/домики с наружи/IMG_20251031_142009_921.jpg', category: 'domiki', alt: 'Экстерьер банного домика' },
+    { src: 'img/домики с наружи/IMG_20260805_171004_349.jpg', category: 'domiki', alt: 'Домик среди природы' },
+    { src: 'img/домики с наружи/IMG_20251002_201633_084.jpg', category: 'domiki', alt: 'Экстерьер комплекса ИзвараПар' },
+    { src: 'img/домики с наружи/IMG_20251002_201640_793.jpg', category: 'domiki', alt: 'Домик снаружи' },
+    // Интерьер
+    { src: 'img/интерьер/20231201_225956.jpg', category: 'interior', alt: 'Интерьер комплекса' },
+    { src: 'img/интерьер/IMG_20251002_201823_508.JPG', category: 'interior', alt: 'Уютная комната отдыха' },
+    { src: 'img/интерьер/IMG_20251002_201840_187.JPG', category: 'interior', alt: 'Интерьер бани' },
+    { src: 'img/интерьер/IMG_20251002_201844_785.JPG', category: 'interior', alt: 'Убранство парной' },
+    { src: 'img/интерьер/IMG_20251002_201858_375.JPG', category: 'interior', alt: 'Комната отдыха внутри' },
+    { src: 'img/интерьер/IMG_20251016_220338_800.JPG', category: 'interior', alt: 'Внутреннее пространство' },
+    { src: 'img/интерьер/IMG_20251031_142000_856.jpg', category: 'interior', alt: 'Уют внутри домика' },
+    { src: 'img/интерьер/IMG_20251031_142000_879.jpg', category: 'interior', alt: 'Интерьер комплекса' },
+    { src: 'img/интерьер/IMG_20251031_142000_897.jpg', category: 'interior', alt: 'Тёплая атмосфера внутри' },
+    { src: 'img/интерьер/IMG_20251031_142001_194.jpg', category: 'interior', alt: 'Интерьер бани' },
+    { src: 'img/интерьер/IMG_20251031_142001_254.jpg', category: 'interior', alt: 'Уютное пространство' },
+    { src: 'img/интерьер/IMG_20251031_142001_354.jpg', category: 'interior', alt: 'Комната отдыха' },
+    { src: 'img/интерьер/IMG_20251031_142001_637.jpg', category: 'interior', alt: 'Интерьер парной' },
+    { src: 'img/интерьер/IMG_20251031_142001_755.jpg', category: 'interior', alt: 'Внутреннее убранство' },
+    { src: 'img/интерьер/IMG_20251031_142009_554.jpg', category: 'interior', alt: 'Интерьер бани' },
+    { src: 'img/интерьер/IMG_20251031_142009_971.jpg', category: 'interior', alt: 'Уют внутри' },
+    { src: 'img/интерьер/IMG_20251031_142010_029.jpg', category: 'interior', alt: 'Комната отдыха' },
+    { src: 'img/интерьер/IMG_20251031_142010_194.jpg', category: 'interior', alt: 'Интерьер комплекса' },
+    { src: 'img/интерьер/IMG_20251031_142010_204.jpg', category: 'interior', alt: 'Тёплая обстановка' },
+    { src: 'img/интерьер/IMG_20251031_142010_242.jpg', category: 'interior', alt: 'Интерьер бани' },
+    { src: 'img/интерьер/IMG_20260813_181401_680.jpg', category: 'interior', alt: 'Уютное пространство внутри' },
+    // Природа
+    { src: 'img/природа/20231203_142821.jpg', category: 'priroda', alt: 'Природа вокруг комплекса' },
+    { src: 'img/природа/20231203_142844.jpg', category: 'priroda', alt: 'Загородный пейзаж' },
+    { src: 'img/природа/IMG_20260113_180037_978.jpg', category: 'priroda', alt: 'Зимний пейзаж вокруг бани' },
+    // Релакс
+    { src: 'img/релакс/20231203_132815.jpg', category: 'relax', alt: 'Горячая купель под открытым небом' },
+    { src: 'img/релакс/20260602_224627.jpg', category: 'relax', alt: 'Вечер у купели' },
+    { src: 'img/релакс/IMG_20251016_220258_788.JPG', category: 'relax', alt: 'Зона отдыха и мангал' },
+    { src: 'img/релакс/IMG_20251016_220317_513.JPG', category: 'relax', alt: 'Купель с горячей водой' },
+    { src: 'img/релакс/IMG_20251031_142000_835.jpg', category: 'relax', alt: 'Релакс-зона комплекса' },
+    { src: 'img/релакс/IMG_20260113_180056_866.jpg', category: 'relax', alt: 'Чан с горячей водой' },
+    { src: 'img/релакс/IMG_20260611_155353_900.jpg', category: 'relax', alt: 'Мангальная зона' },
+    { src: 'img/релакс/IMG_20260809_171519_483.jpg', category: 'relax', alt: 'Отдых у купели' },
+    { src: 'img/релакс/IMG_20260813_181338_573.jpg', category: 'relax', alt: 'Горячая купель фурако' },
+    { src: 'img/релакс/IMG_20260813_181351_861.jpg', category: 'relax', alt: 'Зона релакса' },
+    { src: 'img/релакс/IMG_20260813_181354_521.jpg', category: 'relax', alt: 'Купель под открытым небом' },
+    { src: 'img/релакс/IMG_20251002_201908_731.jpg', category: 'relax', alt: 'Отдых у горячей купели' },
+    { src: 'img/релакс/IMG_20251007_011717_339.jpg', category: 'relax', alt: 'Релакс-зона комплекса' },
+  ];
+
+  // --- Рендер галереи ---
+  const grid = document.getElementById('gallery-grid');
+  const showMoreBtn = document.getElementById('show-more');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+
+  const state = { category: 'all', visibleCount: 8 };
+
+  galleryData.forEach((item, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'gallery-item aspect-square rounded-xl overflow-hidden';
+    wrap.dataset.category = item.category;
+    wrap.dataset.index = i;
+    wrap.innerHTML = `<img src="${item.src}" alt="${item.alt}" loading="lazy" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-500">`;
+    grid.appendChild(wrap);
+  });
+
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+
+  // --- Лайтбокс: открытие фото по клику/тапу ---
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+  let lightboxList = [];
+  let lightboxPos = 0;
+
+  function openLightbox(el) {
+    lightboxList = galleryItems.filter(item => !item.classList.contains('is-hidden'));
+    lightboxPos = lightboxList.indexOf(el);
+    showLightboxImage();
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showLightboxImage() {
+    const img = lightboxList[lightboxPos].querySelector('img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  galleryItems.forEach(el => {
+    el.addEventListener('click', () => openLightbox(el));
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  lightboxPrev.addEventListener('click', () => {
+    lightboxPos = (lightboxPos - 1 + lightboxList.length) % lightboxList.length;
+    showLightboxImage();
+  });
+  lightboxNext.addEventListener('click', () => {
+    lightboxPos = (lightboxPos + 1) % lightboxList.length;
+    showLightboxImage();
+  });
+  document.addEventListener('keydown', e => {
+    if (lightbox.classList.contains('hidden')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxPrev.click();
+    if (e.key === 'ArrowRight') lightboxNext.click();
+  });
+
+  function renderGallery() {
+    const filtered = galleryItems.filter(el => state.category === 'all' || el.dataset.category === state.category);
+
+    galleryItems.forEach(el => el.classList.add('is-hidden'));
+
+    filtered.forEach((el, idx) => {
+      if (idx < state.visibleCount) {
+        const wasHidden = el.classList.contains('is-hidden');
+        el.classList.remove('is-hidden');
+        if (wasHidden) {
+          el.classList.add('is-appearing');
+          requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('is-appearing')));
+        }
+      }
+    });
+
+    showMoreBtn.classList.toggle('hidden', state.visibleCount >= filtered.length);
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.category = btn.dataset.category;
+      state.visibleCount = 8;
+
+      tabButtons.forEach(b => {
+        b.classList.remove('border-gold-500', 'bg-gold-500', 'text-charcoal-900', 'font-medium');
+        b.classList.add('border-white/15', 'text-stone-300');
+      });
+      btn.classList.add('border-gold-500', 'bg-gold-500', 'text-charcoal-900', 'font-medium');
+      btn.classList.remove('border-white/15', 'text-stone-300');
+
+      renderGallery();
+    });
+  });
+
+  showMoreBtn.addEventListener('click', () => {
+    state.visibleCount += 8;
+    renderGallery();
+  });
+
+  renderGallery();
+
+  // --- Плавная прокрутка для якорных ссылок ---
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const targetId = link.getAttribute('href');
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // --- Уважение к prefers-reduced-motion ---
+  const heroVideo = document.querySelector('#hero video');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (heroVideo) heroVideo.pause();
+  } else if (heroVideo) {
+    // Подстраховка зацикливания видео на случай, если атрибут loop не сработает
+    heroVideo.addEventListener('ended', () => {
+      heroVideo.currentTime = 0;
+      heroVideo.play();
+    });
+  }
+</script>
+
+</body>
+</html>
